@@ -16,7 +16,7 @@
  */
 void Mainframe::Initialize()
 {
-    Create(nullptr, wxID_ANY, L"Minesweeper",wxDefaultPosition,  wxSize( 1000,800 ));
+    Create(nullptr, wxID_ANY, L"Minesweeper",wxDefaultPosition,  wxSize(332, 375 ));
 
     // Create a sizer that will lay out child windows vertically
     // one above each other

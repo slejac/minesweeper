@@ -21,8 +21,9 @@ private:
     Game mGame;
 
     void OnPaint(wxPaintEvent& event);
-
     void OnGenerateGame(wxCommandEvent& event);
+    void OnLeftDown(wxMouseEvent &event);
+    void OnRightDown(wxMouseEvent &event);
 
 public:
     void Initialize(wxFrame* parent);

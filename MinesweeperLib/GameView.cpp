@@ -8,7 +8,6 @@
 #include <wx/dcbuffer.h>
 #include "GameView.h"
 #include "ids.h"
-#include "Game.h"
 
 /**
  * Initializes GameView class.
@@ -21,8 +20,13 @@ void GameView::Initialize(wxFrame* parent)
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_PAINT, &GameView::OnPaint, this);
+    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
+    Bind(wxEVT_RIGHT_DOWN, &GameView::OnRightDown, this);
 
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnGenerateGame, this, IDM_GENERATE);
+
+    mGame.NewGame();
+    Refresh();
 }
 
 /**
@@ -39,7 +43,41 @@ void GameView::OnPaint(wxPaintEvent& event)
     mGame.OnDraw(&dc);
 }
 
+/**
+ * Event handler for Generate Game
+ *
+ * @param event Menu->Generate Game
+ */
 void GameView::OnGenerateGame(wxCommandEvent& event)
 {
-    mGame.Create();
+    mGame.NewGame();
+    Refresh();
+}
+
+/**
+ * Handle the left mouse button down event.
+ *
+ * @param event
+ */
+void GameView::OnLeftDown(wxMouseEvent &event)
+{
+    if (!mGame.GetGameStatus())
+    {
+        mGame.HitTest(event.GetX(), event.GetY());
+        Refresh();
+    }
+}
+
+/**
+ * Handle the right mouse button down event.
+ *
+ * @param event
+ */
+void GameView::OnRightDown(wxMouseEvent& event)
+{
+    if (!mGame.GetGameStatus())
+    {
+        mGame.Flag(event.GetX(), event.GetY());
+        Refresh();
+    }
 }
