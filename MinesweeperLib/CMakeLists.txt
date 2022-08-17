@@ -1,6 +1,6 @@
 project(MinesweeperLib)
 
-set(SOURCE_FILES Mainframe.cpp Mainframe.h GameView.cpp GameView.h ids.h)
+set(SOURCE_FILES Mainframe.cpp Mainframe.h GameView.cpp GameView.h ids.h Game.cpp Game.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

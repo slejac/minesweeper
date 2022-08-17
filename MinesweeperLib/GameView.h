@@ -10,12 +10,19 @@
 #define MINESWEEPER_GAMEVIEW_H
 
 #include <wx/wx.h>
+#include "Game.h"
 
 /**
  * A view representing our game itself.
  */
 class GameView : public wxWindow {
 private:
+    /// Game we are using
+    Game mGame;
+
+    void OnPaint(wxPaintEvent& event);
+
+    void OnGenerateGame(wxCommandEvent& event);
 
 public:
     void Initialize(wxFrame* parent);
